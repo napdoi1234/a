@@ -1,0 +1,16 @@
+D:\tranning nash\22062021\bin\Debug\net5.0\22062021.exe
+D:\tranning nash\22062021\bin\Debug\net5.0\22062021.deps.json
+D:\tranning nash\22062021\bin\Debug\net5.0\22062021.runtimeconfig.json
+D:\tranning nash\22062021\bin\Debug\net5.0\22062021.runtimeconfig.dev.json
+D:\tranning nash\22062021\bin\Debug\net5.0\22062021.dll
+D:\tranning nash\22062021\bin\Debug\net5.0\ref\22062021.dll
+D:\tranning nash\22062021\bin\Debug\net5.0\22062021.pdb
+D:\tranning nash\22062021\obj\Debug\net5.0\22062021.csproj.AssemblyReference.cache
+D:\tranning nash\22062021\obj\Debug\net5.0\22062021.GeneratedMSBuildEditorConfig.editorconfig
+D:\tranning nash\22062021\obj\Debug\net5.0\22062021.AssemblyInfoInputs.cache
+D:\tranning nash\22062021\obj\Debug\net5.0\22062021.AssemblyInfo.cs
+D:\tranning nash\22062021\obj\Debug\net5.0\22062021.csproj.CoreCompileInputs.cache
+D:\tranning nash\22062021\obj\Debug\net5.0\22062021.dll
+D:\tranning nash\22062021\obj\Debug\net5.0\ref\22062021.dll
+D:\tranning nash\22062021\obj\Debug\net5.0\22062021.pdb
+D:\tranning nash\22062021\obj\Debug\net5.0\22062021.genruntimeconfig.cache
