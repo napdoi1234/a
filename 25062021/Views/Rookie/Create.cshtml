@@ -1,0 +1,69 @@
+@model PersonModel
+@{
+    ViewBag.Title = "Create person";
+}
+<div class="jumbotron">
+    <h3>Form Create A Person</h3>
+    @using (Html.BeginForm("Create", "Rookie", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true,"",new {@class = "text-danger"})
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName)
+            @Html.EditorFor(model => model.FirstName,new {htmlAttributes = new {@class = "form-control"}})
+            @Html.ValidationMessageFor(model => model.FirstName,"",new {@class = "text-danger"})
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName)
+            @Html.EditorFor(model => model.LastName,new {htmlAttributes = new {@class = "form-control"}})
+            @Html.ValidationMessageFor(model => model.LastName,"",new {@class = "text-danger"})
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Gender)
+            @Html.EditorFor(model => model.Gender,new {htmlAttributes = new {@class = "form-control"}})
+            @Html.ValidationMessageFor(model => model.Gender,"",new {@class = "text-danger"})
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateOfBirth)
+            @Html.EditorFor(model => model.DateOfBirth,new {htmlAttributes = new {@class = "form-control"}})
+            @Html.ValidationMessageFor(model => model.DateOfBirth,"",new {@class = "text-danger"})
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhoneNumber)
+            @Html.EditorFor(model => model.PhoneNumber,new {htmlAttributes = new {@class = "form-control"}})
+            @Html.ValidationMessageFor(model => model.PhoneNumber,"",new {@class = "text-danger"})
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BirthPlace)
+            @Html.EditorFor(model => model.BirthPlace,new {htmlAttributes = new {@class = "form-control"}})
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsGraduated)
+            @Html.DropDownListFor(
+        model => model.IsGraduated,
+        new SelectList(
+        new List<Object>{
+        new { value = true , text = "Done" },
+        new { value = false , text = "Not Yet" } },
+        "value",
+        "text"
+        ),
+        new {@class = "form-control"}
+        )
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email)
+            @Html.EditorFor(model => model.Email,new {htmlAttributes = new {@class = "form-control"}})
+            @Html.ValidationMessageFor(model => model.Email,"",new {@class = "text-danger"})
+        </div>
+
+        <input type="submit" value="Add" class="form-control">
+    }
+</div>
