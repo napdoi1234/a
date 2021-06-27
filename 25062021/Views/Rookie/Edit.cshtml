@@ -1,9 +1,9 @@
 @model PersonModel
 @{
-    ViewBag.Title = "Create person";
+    ViewBag.Title = "Update person";
 }
 <div class="jumbotron">
-    <h3>Form Create A Person</h3>
+    <h3>Form Update A Person</h3>
     @using (Html.BeginForm("Edit", "Rookie", FormMethod.Post))
     {
         <span>@Html.ValidationSummary(true,"",new {@class = "text-danger"})</span>
