@@ -1,0 +1,11 @@
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewBag.Title = "Confirm Delete";
+}
+<div class="jumbotron">
+    <h3 class="display-4">This is confirm delete form</h3>
+    <p class="lead">Person @HttpContextAccessor.HttpContext.Session.GetString("FullName") was removed from the list
+        successfully !</p>
+</div>
+<a class="btn btn-secondary" href="@Url.Action("ViewList")" , role="button">Back to List</a>
