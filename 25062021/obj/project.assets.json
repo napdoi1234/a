@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\tranning\\tranning.csproj",
+      "projectUniqueName": "D:\\tranning-nash\\25062021\\tranning.csproj",
       "projectName": "tranning",
-      "projectPath": "D:\\tranning\\tranning.csproj",
+      "projectPath": "D:\\tranning-nash\\25062021\\tranning.csproj",
       "packagesPath": "C:\\Users\\Ki Thuat 88\\.nuget\\packages\\",
-      "outputPath": "D:\\tranning\\obj\\",
+      "outputPath": "D:\\tranning-nash\\25062021\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

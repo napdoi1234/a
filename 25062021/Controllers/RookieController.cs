@@ -88,7 +88,7 @@ namespace _24062021.Controllers
                 members.Add(person);
                 return RedirectToAction(nameof(ViewList));
             }
-            return View();
+            return View("Fail");
         }
 
         public IActionResult Edit(Guid id)
@@ -106,7 +106,7 @@ namespace _24062021.Controllers
                 members[findPerson] = person;
                 return RedirectToAction(nameof(ViewList));
             }
-            return View();
+            return View("Fail");
         }
 
         [HttpPost]
@@ -117,7 +117,7 @@ namespace _24062021.Controllers
             {
                 members.RemoveAt(findPerson);
             }
-            return RedirectToAction(nameof(ViewList));
+             return View("Fail");
         }
     }
 }
