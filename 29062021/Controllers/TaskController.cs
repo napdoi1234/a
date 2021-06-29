@@ -75,8 +75,7 @@ namespace _29062021.Controllers
         [HttpDelete("RemoveList")]
         public async Task<ActionResult<bool>> ListTaskRemove(List<Guid> ids)
         {
-            var listOfId = _context.Tasks.Select(r => r.Id);
-            var taskList = await _context.Tasks.Where(r => listOfId.Contains(r.Id)).ToListAsync();
+            var taskList = await _context.Tasks.Where(r => ids.Contains(r.Id)).ToListAsync();
             if (taskList != null)
             {
                 _context.Tasks.RemoveRange(taskList);
