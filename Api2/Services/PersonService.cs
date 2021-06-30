@@ -84,25 +84,6 @@ namespace Api2.Services
             return false;
         }
 
-        public List<PersonModel> FindByBirthPlace(string birthPlace)
-        {
-            var personList = members.Where(x => x.BirthPlace.Equals(birthPlace, StringComparison.CurrentCultureIgnoreCase)).ToList();
-            return personList;
-        }
-
-        public List<PersonModel> FindByGender(string gender)
-        {
-            var personList = members.Where(x => x.Gender.Equals(gender, StringComparison.CurrentCultureIgnoreCase)).ToList();
-            return personList;
-        }
-
-        public List<PersonModel> FindByName(string name)
-        {
-            var personList = members.Where(x => x.FirstName.Equals(name) || x.LastName.Equals(name)
-            || ($"{x.FirstName } {x.LastName}").Equals(name)).ToList();
-            return personList;
-        }
-
         public List<PersonModel> SearchPerson(PersonFilterModel personFilter)
         {
             string lastName = personFilter.LastName;
@@ -114,7 +95,7 @@ namespace Api2.Services
                                       (!string.IsNullOrEmpty(birthPlace) && x.BirthPlace.Equals(birthPlace, StringComparison.CurrentCultureIgnoreCase)) ||
                                       (!string.IsNullOrEmpty(gender) && x.Gender.Equals(gender, StringComparison.CurrentCultureIgnoreCase))).ToList();
         }
-
+        
         public PersonModel Update(PersonModel model)
         {
             var person = FindOne(model.Id);
@@ -125,6 +106,7 @@ namespace Api2.Services
             }
             return person;
         }
+
         private PersonModel FindOne(int id)
         {
             var person = members.FirstOrDefault(x => x.Id == id);
