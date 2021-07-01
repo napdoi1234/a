@@ -68,7 +68,7 @@ namespace Api2.Services
 
         public PersonModel Create(PersonModel person)
         {
-            person.Id = members.Count;
+            person.Id = members[members.Count-1].Id +1;
             members.Add(person);
             return person;
         }
