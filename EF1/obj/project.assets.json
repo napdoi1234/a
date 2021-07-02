@@ -5900,8 +5900,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Ki Thuat 88\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Dell\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -5909,14 +5908,11 @@
       "projectUniqueName": "D:\\tranning-nash\\EF1\\EF1.csproj",
       "projectName": "EF1",
       "projectPath": "D:\\tranning-nash\\EF1\\EF1.csproj",
-      "packagesPath": "C:\\Users\\Ki Thuat 88\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
       "outputPath": "D:\\tranning-nash\\EF1\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Ki Thuat 88\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"

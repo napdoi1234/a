@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EF1.Models;
 using Microsoft.EntityFrameworkCore;
-
 namespace EF1.Services
 {
     public class StudentService : IStudentService

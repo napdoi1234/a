@@ -10,14 +10,11 @@
         "projectUniqueName": "D:\\tranning-nash\\Api2\\Api2.csproj",
         "projectName": "Api2",
         "projectPath": "D:\\tranning-nash\\Api2\\Api2.csproj",
-        "packagesPath": "C:\\Users\\Ki Thuat 88\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
         "outputPath": "D:\\tranning-nash\\Api2\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Ki Thuat 88\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
