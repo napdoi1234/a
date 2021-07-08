@@ -1,0 +1,66 @@
+@model PersonModel
+@{
+    ViewBag.Title = "Detail";
+}
+<div class="jumbotron">
+    <h3>Detail Of A Person</h3>
+    <div class="row">
+        <div class="col-6">
+            @Html.LabelFor(model => model.FirstName):
+            <label>@Html.ValueFor(model => model.FirstName)</label>
+        </div>
+
+        <div class="col-6">
+            @Html.LabelFor(model => model.LastName):
+            <label>@Html.ValueFor(model => model.LastName)</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            @Html.LabelFor(model => model.Gender):
+            <label>@Html.ValueFor(model => model.Gender)</label>
+        </div>
+
+        <div class="col-6">
+            @Html.LabelFor(model => model.DateOfBirth):
+            <label>@Html.ValueFor(model => model.DateOfBirth)</label>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-6">
+            @Html.LabelFor(model => model.PhoneNumber):
+            <label>@Html.ValueFor(model => model.PhoneNumber)</label>
+        </div>
+
+        <div class="col-6">
+            @Html.LabelFor(model => model.BirthPlace):
+            <label>@Html.ValueFor(model => model.BirthPlace)</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            @Html.LabelFor(model => model.IsGraduated):
+            @if (@Html.ValueFor(model => model.IsGraduated) == "True")
+            {
+                <label>Done</label>
+            }
+            else
+            {
+                <label>Not Yet</label>
+            }
+        </div>
+
+        <div class="col-6">
+            @Html.LabelFor(model => model.Email):
+            <label>@Html.ValueFor(model => model.Email)</label>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("Delete", "Rookie", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.Id)
+        <button type="submit" class="btn btn-dark">Delete</button>
+    }
+</div>

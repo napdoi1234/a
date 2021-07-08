@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\tranning-nash\\Review2\\Review2.csproj": {}
+    "d:\\tranning-nash\\Review2\\Review2.csproj": {}
   },
   "projects": {
-    "D:\\tranning-nash\\Review2\\Review2.csproj": {
+    "d:\\tranning-nash\\Review2\\Review2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\tranning-nash\\Review2\\Review2.csproj",
+        "projectUniqueName": "d:\\tranning-nash\\Review2\\Review2.csproj",
         "projectName": "Review2",
-        "projectPath": "D:\\tranning-nash\\Review2\\Review2.csproj",
+        "projectPath": "d:\\tranning-nash\\Review2\\Review2.csproj",
         "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "D:\\tranning-nash\\Review2\\obj\\",
+        "outputPath": "d:\\tranning-nash\\Review2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -8,23 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Ki Thuat 88\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Dell\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\tranning-nash\\25062021\\tranning.csproj",
+      "projectUniqueName": "d:\\tranning-nash\\25062021\\tranning.csproj",
       "projectName": "tranning",
-      "projectPath": "D:\\tranning-nash\\25062021\\tranning.csproj",
-      "packagesPath": "C:\\Users\\Ki Thuat 88\\.nuget\\packages\\",
-      "outputPath": "D:\\tranning-nash\\25062021\\obj\\",
+      "projectPath": "d:\\tranning-nash\\25062021\\tranning.csproj",
+      "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+      "outputPath": "d:\\tranning-nash\\25062021\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Ki Thuat 88\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
