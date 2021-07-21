@@ -1,75 +1,82 @@
-import PostsPage from './pages/PostsPage';
-import HomePage from './pages/HomePage';
-import ProfilePage from './pages/ProfilePage';
-import LoginPage from './pages/LoginPage';
-import PostPage from './pages/PostPage';
+import PostsPage from './pages/Posts/PostsPage';
+import HomePage from './pages/Home/HomePage';
+import ProfilePage from './pages/Profile/ProfilePage';
+import LoginPage from './pages/Login/LoginPage';
+import PostPage from './pages/Post/PostPage';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
-import { useEffect,useState } from 'react';
+import { useState } from 'react';
+import CurrentUserContext from './contexts/CurrentUserContext';
+import LoginConstant from './constants/LoginConstant';
+import React from 'react';
 
 function App() {
 
-  const[didLogout,setDidLogout]=useState(false);
+  const [currentUser, setCurrentUser] = useState({
+    userId: null,
+    token: null,
+  });
 
-  let loginElement;
-  let logoutElement;
-  let clickLogoutElement;
-
-  useEffect(()=>{
-    loginElement = document.getElementById("login");
-    logoutElement = document.getElementById("logout");
-    clickLogoutElement = document.getElementById("remoteLogout");
-  },[didLogout])
-
-  const hanldeLogout = () => {
-    setDidLogout(true)
-    localStorage.clear();
-    loginElement.style.display = "block";
-    logoutElement.style.display = "none";
-    if(clickLogoutElement !== null){
-      clickLogoutElement.click();
-    }
+  const handleLogout = () => {
+    setCurrentUser({
+      userId: null,
+      token: null,
+    });
   }
+
   return (
     <div>
-      <Router>
-        <div style={{ display: "flex" }}>
+      <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+        <Router>
+          <div style={{ display: "flex" }}>
 
-          <Link to="/" style={{ padding: "10px" }}>Home</Link>
+            <Link to="/" style={{ padding: "10px" }}>Home</Link>
 
-          <Link to="/posts" style={{ padding: "10px" }}>Posts</Link>
+            <Link to="/posts" style={{ padding: "10px" }}>Posts</Link>
 
-          <Link to="/profile" style={{ padding: "10px" }}>Profile</Link>
+            <Link to="/profile" style={{ padding: "10px" }}>Profile</Link>
 
-          <Link to="/login" style={{ padding: "10px" }} id="login">Login</Link>
+            {
+              currentUser.userId !== null ? <input type="button" id="logout"
+                style={{ padding: "10px" }} value="Logout" onClick={handleLogout} /> :
+                <Link to="/login" style={{ padding: "10px" }} id="login">Login</Link>
+            }
 
-          <input type="button" id="logout"
-            style={{ display: "none", padding: "0px" }} value="Logout" onClick={hanldeLogout} />
-        </div>
+          </div>
 
-        <Switch>
-          <Route path="/" exact>
-            <HomePage />
-          </Route>
-          <Route path="/posts" exact>
-            <PostsPage />
-          </Route>
-          <Route path="/posts/:postId">
-            <PostPage />
-          </Route>
-          <Route path="/profile">
-            <ProfilePage setDidLogout = {setDidLogout}/>
-          </Route>
-          <Route path="/login">
-            <LoginPage setDidLogout = {setDidLogout}/>
-          </Route>
-        </Switch>
+          <Switch>
+            <Route path="/" exact>
+              <HomePage />
+            </Route>
+            <Route path="/posts" exact>
+              <PostsPage />
+            </Route>
+            <Route path="/posts/:postId">
+              <PostPage />
+            </Route>
+            <Route
+              path="/profile"
+              exact
+              render={
+                () => {
+                  if (currentUser.token === null) {
+                    return <LoginPage title={LoginConstant.Message} />
+                  }
+                  return <ProfilePage />
+                }
+              }
+            />
+            <Route path="/login">
+              <LoginPage />
+            </Route>
+          </Switch>
 
-      </Router>
+        </Router>
+      </CurrentUserContext.Provider>
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import PostsConstant from "../constants/PostsConstant";
+import PostsConstant from "../../constants/PostsConstant";
 import { Link } from "react-router-dom";
+import React from 'react';
 
 const PostsPage = props => {
     const [posts, setPosts] = useState();
@@ -56,7 +57,7 @@ const PostsPage = props => {
                 <tbody>
                     {filterPosts.map(post => {
                         return (
-                            <tr key = {post.id}>
+                            <tr key={post.id}>
                                 <td>{post.id}</td>
                                 <td>{post.title}</td>
                                 <td><Link to={`/posts/${post.id}`}>{PostsConstant.DetailField}</Link></td>
