@@ -1,9 +1,8 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import PostsConstant from "../../constants/PostsConstant";
 import Post from "./PostComponent/Post";
 import React from 'react';
+import PostService from "../../services/PostService";
 
 const PostPage = props => {
     const { postId } = useParams();
@@ -11,12 +10,12 @@ const PostPage = props => {
 
     useEffect(() => {
         let didCancel = false;
-        axios.get(`${PostsConstant.LinkGetPosts}/${postId}`)
-            .then(function (response) {
-                // handle success
-                if (!didCancel)
-                    setPost(response.data);
-            })
+
+        PostService(postId).then(function (response) {
+            // handle success
+            if (!didCancel)
+                setPost(response.data);
+        })
             .catch(function (error) {
                 // handle error
                 console.log(error);

@@ -1,30 +1,32 @@
 import { useForm } from "react-hook-form";
-import axios from "axios";
-import LoginConstant from "../../constants/LoginConstant";
+import LoginConstant from "../../shared/constants/LoginConstant";
 import { useState, useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import React from 'react';
 import { Form, Button, Alert } from "react-bootstrap";
 import styles from './LoginPage.module.css';
+import LoginService from "../../services/LoginService";
 
 const LoginPage = ({ title }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [confirm, setConfirm] = useState('Please login');
+    const [confirm, setConfirm] = useState(LoginConstant.MessageLogin);
     const { setCurrentUser } = useContext(CurrentUserContext);
 
     const onSubmit = () => {
         setConfirm('');
-        axios.get(LoginConstant.GetMockToken)
-            .then(function (response) {
-                // handle success
-                setConfirm(LoginConstant.LoginSuccess);
-                setCurrentUser({
-                    userId: response.data.userId,
-                    token: response.data.token,
-                })
-            })
+        LoginService().then(function (response) {
+            // handle success
+            setConfirm(LoginConstant.LoginSuccess);
+            setCurrentUser({
+                userId: response.data.userId,
+                token: response.data.token,
+            });
+            window.localStorage.setItem('token', response.data.token);
+            window.localStorage.setItem('userId', response.data.userId);
+        })
             .catch(function (error) {
                 // handle error
+                setConfirm(LoginConstant.MessageLogin);
                 console.log(error);
             })
     }

@@ -1,9 +1,8 @@
 import Profile from "./ProfileComponent/Profile";
 import { useState, useEffect, useContext } from "react";
-import axios from "axios";
-import ProfileConstant from "../../constants/ProfileConstant";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import React from 'react';
+import ProfileService from "../../services/ProfileService";
 
 const ProfilePage = () => {
     const [profile, setProfile] = useState();
@@ -11,12 +10,11 @@ const ProfilePage = () => {
 
     useEffect(() => {
         let didCancel = false;
-        axios.get(`${ProfileConstant.GetMockProfile}${currentUser.userId}`)
-            .then(function (response) {
-                // handle success
-                if (!didCancel)
-                    setProfile(response.data);
-            })
+        ProfileService(currentUser.userId).then(function (response) {
+            // handle success
+            if (!didCancel)
+                setProfile(response.data);
+        })
             .catch(function (error) {
                 // handle error
                 console.log(error);

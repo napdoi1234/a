@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-import PostsConstant from "../../constants/PostsConstant";
+import PostsConstant from "../../shared/constants/PostsConstant";
 import { Link } from "react-router-dom";
 import React from 'react';
 import { Table, InputGroup, FormControl } from "react-bootstrap";
 import styles from './PostsPage.module.css';
+import PostsService from "../../services/PostsService";
 
 const PostsPage = props => {
     const [posts, setPosts] = useState();
@@ -12,12 +12,11 @@ const PostsPage = props => {
     const [modeOrder, setModeOrder] = useState(PostsConstant.NoneOrder);
 
     useEffect(() => {
-        axios.get(PostsConstant.LinkGetPosts)
-            .then(function (response) {
-                // handle success
-                setPosts(response.data);
+        PostsService().then(function (response) {
+            // handle success
+            setPosts(response.data);
 
-            })
+        })
             .catch(function (error) {
                 // handle error
                 console.log(error);

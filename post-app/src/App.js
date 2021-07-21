@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import { useState } from 'react';
 import CurrentUserContext from './contexts/CurrentUserContext';
-import LoginConstant from './constants/LoginConstant';
+import LoginConstant from './shared/constants/LoginConstant';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, Container, } from 'react-bootstrap';
@@ -20,8 +20,8 @@ import './index.css'
 function App() {
 
   const [currentUser, setCurrentUser] = useState({
-    userId: null,
-    token: null,
+    userId: window.localStorage.getItem("userId"),
+    token: window.localStorage.getItem("token"),
   });
 
   const handleLogout = () => {
@@ -29,6 +29,7 @@ function App() {
       userId: null,
       token: null,
     });
+    window.localStorage.clear();
   }
 
   return (
@@ -66,7 +67,7 @@ function App() {
               render={
                 () => {
                   if (currentUser.token === null) {
-                    return <LoginPage title={LoginConstant.Message} />
+                    return <LoginPage title={LoginConstant.MessageWarning} />
                   }
                   return <ProfilePage />
                 }
