@@ -4,10 +4,12 @@ import LoginConstant from "../../constants/LoginConstant";
 import { useState, useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import React from 'react';
+import { Form, Button, Alert } from "react-bootstrap";
+import styles from './LoginPage.module.css';
 
 const LoginPage = ({ title }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [confirm, setConfirm] = useState(' ');
+    const [confirm, setConfirm] = useState('Please login');
     const { setCurrentUser } = useContext(CurrentUserContext);
 
     const onSubmit = () => {
@@ -29,49 +31,51 @@ const LoginPage = ({ title }) => {
 
     return (
         <>
-            <p>{title}</p>
-            <form onSubmit={handleSubmit(onSubmit)} style={{ padding: "15px" }}>
+            <Form onSubmit={handleSubmit(onSubmit)} className={styles.formLogin}>
+                <p className={styles.title}>{title}</p>
+                <Form.Group className={`mb-3 ${styles.groupInputLogin}`}>
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control
+                        id="email"
+                        {...register("email", {
+                            required: "required",
+                            pattern: {
+                                value: /\S+@\S+\.\S+/,
+                                message: "Must be valid email"
+                            }
+                        })}
+                        type="email"
+                        placeholder="Email"
+                    />
+                    {errors.email && <span role="alert" className={styles.errorMessage}>{errors.email.message}</span>}
 
-                <input
-                    id="email"
-                    {...register("email", {
-                        required: "required",
-                        pattern: {
-                            value: /\S+@\S+\.\S+/,
-                            message: "Must be valid email"
-                        }
-                    })}
-                    type="email"
-                    placeholder="Email"
-                />
-                <br />
-                {errors.email && <span role="alert" style={{ color: "red" }}>{errors.email.message}</span>}
+                </Form.Group>
+                <Form.Group className={`mb-3' ${styles.groupInputLogin}`}>
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                        id="password"
+                        {...register("password", {
+                            required: "required",
+                            minLength: {
+                                value: 8,
+                                message: "At least 8 characters"
+                            }
+                        })}
+                        type="password"
+                        placeholder="Password"
+                    />
+                    {errors.password && <span role="alert" className={styles.errorMessage}>{errors.password.message}</span>}
+                </Form.Group>
+                <Form.Group className={`mb-3' ${styles.groupInputLogin}`}>
+                    {confirm !== '' ? <Button variant="secondary" type="submit" >Submit</Button>
+                        : <Button variant="secondary" type="submit" disabled={true}>Submit</Button>
+                    }
+                </Form.Group>
+            </Form>
+            <Alert variant="dark" className={styles.confirmLogin}>
+                <div >{confirm}</div>
+            </Alert>
 
-                <br />
-                <br />
-                <input
-                    id="password"
-                    {...register("password", {
-                        required: "required",
-                        minLength: {
-                            value: 8,
-                            message: "At least 8 characters"
-                        }
-                    })}
-                    type="password"
-                    placeholder="Password"
-                />
-                <br />
-                {errors.password && <span role="alert" style={{ color: "red" }}>{errors.password.message}</span>}
-                <br />
-                <br />
-                {confirm !== '' ? <button type="submit" id="submit">Submit</button>
-                    : <button type="submit" id="submit" disabled={true}>Submit</button>
-                }
-
-            </form>
-
-            <div style={{ color: "green", margin: "20px" }}>{confirm}</div>
         </>
     );
 };

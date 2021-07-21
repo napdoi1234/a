@@ -7,12 +7,15 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  NavLink
 } from "react-router-dom";
 import { useState } from 'react';
 import CurrentUserContext from './contexts/CurrentUserContext';
 import LoginConstant from './constants/LoginConstant';
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navbar, Nav, Container, } from 'react-bootstrap';
+import './index.css'
 
 function App() {
 
@@ -32,21 +35,20 @@ function App() {
     <div>
       <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
         <Router>
-          <div style={{ display: "flex" }}>
-
-            <Link to="/" style={{ padding: "10px" }}>Home</Link>
-
-            <Link to="/posts" style={{ padding: "10px" }}>Posts</Link>
-
-            <Link to="/profile" style={{ padding: "10px" }}>Profile</Link>
-
-            {
-              currentUser.userId !== null ? <input type="button" id="logout"
-                style={{ padding: "10px" }} value="Logout" onClick={handleLogout} /> :
-                <Link to="/login" style={{ padding: "10px" }} id="login">Login</Link>
-            }
-
-          </div>
+          <Navbar bg="dark" variant="dark" className="navbarCommon">
+            <Navbar.Brand href="/">Posts Application</Navbar.Brand>
+            <Container >
+              <Nav >
+                <NavLink to="/" className="navLink">Home</NavLink>
+                <NavLink to="/posts" className="navLink">Posts</NavLink>
+                <NavLink to="/profile" className="navLink">Profile</NavLink>
+                {
+                  currentUser.userId !== null ? <input type="button" value="Logout" onClick={handleLogout} /> :
+                    <NavLink to="/login" id="login" className="navLink">Login</NavLink>
+                }
+              </Nav>
+            </Container>
+          </Navbar>
 
           <Switch>
             <Route path="/" exact>

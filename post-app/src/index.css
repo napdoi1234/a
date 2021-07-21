@@ -10,3 +10,25 @@ td, th {
   padding: 8px;
 }
 
+.navbarCommon{
+  margin-bottom: 15px;
+}
+
+.navCommon {
+  margin: 0;
+}
+
+.navLink {
+  color: rgba(255,255,255,.55);
+  padding-right: .5rem;
+  padding-left: .5rem;
+  display: block;
+  padding: .5rem 1rem;
+  text-decoration: none;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+    transition-property: color, background-color, border-color;
+    transition-duration: 0.15s, 0.15s, 0.15s;
+    transition-timing-function: ease-in-out, ease-in-out, ease-in-out;
+    transition-delay: 0s, 0s, 0s;
+  cursor: pointer;
+}

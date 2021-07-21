@@ -1,14 +1,20 @@
 import React from 'react';
+import { Card } from 'react-bootstrap';
+import styles from './Profile.module.css';
 
 const Profile = ({ name, id }) => {
     return (
-        <div>
-
-            <h4>Profile</h4>
-            <p>Name : {name}</p>
-            <p>UserID : {id}</p>
-
-        </div>
+        <Card className={styles.card}>
+            <Card.Body>
+                <Card.Title>Profile</Card.Title>
+                <Card.Text >
+                    Name : {name}
+                </Card.Text>
+                <Card.Text>
+                    UserID : {id}
+                </Card.Text>
+            </Card.Body>
+        </Card>
     );
 };
 

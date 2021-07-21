@@ -3,6 +3,8 @@ import axios from "axios";
 import PostsConstant from "../../constants/PostsConstant";
 import { Link } from "react-router-dom";
 import React from 'react';
+import { Table, InputGroup, FormControl } from "react-bootstrap";
+import styles from './PostsPage.module.css';
 
 const PostsPage = props => {
     const [posts, setPosts] = useState();
@@ -43,10 +45,12 @@ const PostsPage = props => {
     }
 
     return (
-
         <div>
-            <input type="text" value={searchPosts} onChange={event => setSearchPosts(event.target.value)} placeholder="Search Post" />
-            <table style={{ width: "100%" }}>
+            <InputGroup size="sm" className={`mb-3 ${styles.searchInput}`}>
+                <FormControl type="text" value={searchPosts}
+                    onChange={event => setSearchPosts(event.target.value)} placeholder="Search Post" />
+            </InputGroup>
+            <Table striped bordered hover variant="dark">
                 <thead>
                     <tr>
                         <th>{PostsConstant.IdHeader}</th>
@@ -60,13 +64,13 @@ const PostsPage = props => {
                             <tr key={post.id}>
                                 <td>{post.id}</td>
                                 <td>{post.title}</td>
-                                <td><Link to={`/posts/${post.id}`}>{PostsConstant.DetailField}</Link></td>
+                                <td ><Link to={`/posts/${post.id}`} style={{ color: 'white' }}>{PostsConstant.DetailField}</Link></td>
                             </tr>
                         )
                     })
                     }
                 </tbody>
-            </table>
+            </Table>
         </div>
     );
 };

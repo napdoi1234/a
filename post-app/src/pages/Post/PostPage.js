@@ -10,16 +10,18 @@ const PostPage = props => {
     const [post, setPost] = useState();
 
     useEffect(() => {
+        let didCancel = false;
         axios.get(`${PostsConstant.LinkGetPosts}/${postId}`)
             .then(function (response) {
                 // handle success
-                setPost(response.data);
-
+                if (!didCancel)
+                    setPost(response.data);
             })
             .catch(function (error) {
                 // handle error
                 console.log(error);
             })
+        return () => didCancel = true
     }, [postId]);
 
     return (
