@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "ELibrary": "Server=VANNC;Database=Library Manager;Trusted_Connection=True;"
+  }
+}
