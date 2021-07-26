@@ -1,0 +1,241 @@
+{
+  "format": 1,
+  "restore": {
+    "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryWebAPI\\ELibrarySolution.ELibraryWebAPI.csproj": {}
+  },
+  "projects": {
+    "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryData\\ELibrarySolution.ELibraryData.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryData\\ELibrarySolution.ELibraryData.csproj",
+        "projectName": "ELibrarySolution.ELibraryData",
+        "projectPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryData\\ELibrarySolution.ELibraryData.csproj",
+        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "outputPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryData\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryService\\ELibrarySolution.ELibraryService.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryService\\ELibrarySolution.ELibraryService.csproj",
+        "projectName": "ELibrarySolution.ELibraryService",
+        "projectPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryService\\ELibrarySolution.ELibraryService.csproj",
+        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "outputPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryService\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryUtilities\\ELibrarySolution.ELibraryUtilities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryUtilities\\ELibrarySolution.ELibraryUtilities.csproj",
+        "projectName": "ELibrarySolution.ELibraryUtilities",
+        "projectPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryUtilities\\ELibrarySolution.ELibraryUtilities.csproj",
+        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "outputPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryUtilities\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryWebAPI\\ELibrarySolution.ELibraryWebAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryWebAPI\\ELibrarySolution.ELibraryWebAPI.csproj",
+        "projectName": "ELibrarySolution.ELibraryWebAPI",
+        "projectPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryWebAPI\\ELibrarySolution.ELibraryWebAPI.csproj",
+        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "outputPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryWebAPI\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryData\\ELibrarySolution.ELibraryData.csproj": {
+                "projectPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryData\\ELibrarySolution.ELibraryData.csproj"
+              },
+              "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryService\\ELibrarySolution.ELibraryService.csproj": {
+                "projectPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryService\\ELibrarySolution.ELibraryService.csproj"
+              },
+              "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryUtilities\\ELibrarySolution.ELibraryUtilities.csproj": {
+                "projectPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrarySolution.ELibraryUtilities\\ELibrarySolution.ELibraryUtilities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

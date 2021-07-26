@@ -1,0 +1,12 @@
+D:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Utilities\bin\Debug\net5.0\ELibrary.Utilities.deps.json
+D:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Utilities\bin\Debug\net5.0\ELibrary.Utilities.dll
+D:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Utilities\bin\Debug\net5.0\ref\ELibrary.Utilities.dll
+D:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Utilities\bin\Debug\net5.0\ELibrary.Utilities.pdb
+D:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Utilities\obj\Debug\net5.0\ELibrary.Utilities.csproj.AssemblyReference.cache
+D:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Utilities\obj\Debug\net5.0\ELibrary.Utilities.GeneratedMSBuildEditorConfig.editorconfig
+D:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Utilities\obj\Debug\net5.0\ELibrary.Utilities.AssemblyInfoInputs.cache
+D:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Utilities\obj\Debug\net5.0\ELibrary.Utilities.AssemblyInfo.cs
+D:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Utilities\obj\Debug\net5.0\ELibrary.Utilities.csproj.CoreCompileInputs.cache
+D:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Utilities\obj\Debug\net5.0\ELibrary.Utilities.dll
+D:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Utilities\obj\Debug\net5.0\ref\ELibrary.Utilities.dll
+D:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Utilities\obj\Debug\net5.0\ELibrary.Utilities.pdb
