@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ELibrary.WebAPI.Controllers
 {
   [ApiController]
-  [Route("api/borrowed_book")]
+  [Route("api/books")]
   [Authorize(Roles = UserConstant.NormalRole)]
   public class BorrowingBooksController : ControllerBase
   {
@@ -21,19 +21,19 @@ namespace ELibrary.WebAPI.Controllers
       _bookService = bookService;
     }
 
-    [HttpGet]
+    [HttpPost("borrowed_books")]
     public async Task<ActionResult<PagingResult<BookBorrowingRequestDTO>>> ViewBorrowedBooks(BookBorrowingRequestDTO requestDTO)
     {
       return Ok(await _bBookService.ViewBorrowedBooks(requestDTO));
     }
 
-    [HttpGet]
+    [HttpPost]
     public async Task<ActionResult<PagingResult<BookDTO>>> ViewBooks(BookDTO requestDTO)
     {
       return Ok(await _bookService.View(requestDTO));
     }
 
-    [HttpPost]
+    [HttpPost("borrowed")]
     public async Task<ActionResult<BookBorrowingRequestDTO>> BorrowedBooks(BookBorrowingRequestDTO requestDTO)
     {
       var result = await _bBookService.BorrowBooks(requestDTO);
