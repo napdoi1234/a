@@ -68,3 +68,12 @@ d:\tranning-nash\ELibraryProject\ELibrary\ELibrary.WebAPI\bin\Debug\net5.0\runti
 d:\tranning-nash\ELibraryProject\ELibrary\ELibrary.WebAPI\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 d:\tranning-nash\ELibraryProject\ELibrary\ELibrary.WebAPI\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\tranning-nash\ELibraryProject\ELibrary\ELibrary.WebAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\tranning-nash\ELibraryProject\ELibrary\ELibrary.WebAPI\bin\Debug\net5.0\EntityFramework.SqlServer.dll
+D:\tranning-nash\ELibraryProject\ELibrary\ELibrary.WebAPI\bin\Debug\net5.0\EntityFramework.dll
+d:\tranning-nash\ELibraryProject\ELibrary\ELibrary.WebAPI\bin\Debug\net5.0\System.CodeDom.dll
+d:\tranning-nash\ELibraryProject\ELibrary\ELibrary.WebAPI\bin\Debug\net5.0\System.Data.SqlClient.dll
+d:\tranning-nash\ELibraryProject\ELibrary\ELibrary.WebAPI\bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll
+d:\tranning-nash\ELibraryProject\ELibrary\ELibrary.WebAPI\bin\Debug\net5.0\runtimes\win-x64\native\sni.dll
+d:\tranning-nash\ELibraryProject\ELibrary\ELibrary.WebAPI\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
+d:\tranning-nash\ELibraryProject\ELibrary\ELibrary.WebAPI\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+d:\tranning-nash\ELibraryProject\ELibrary\ELibrary.WebAPI\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll

@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
 using ELibrary.Service.CommonService;
 using ELibrary.Utilities.Constants.User;
@@ -20,15 +21,15 @@ namespace ELibrary.WebAPI.Controllers
     public async Task<ActionResult> Authentication(LoginRequestDTO requestDTO)
     {
       var result = await _authenService.Authenticate(requestDTO);
-      if (result == UserConstant.NotFoundUser)
+      if (result == null)
       {
-        return BadRequest(UserConstant.NotFoundUser);
+        return BadRequest(UserConstant.WrongAuthen);
       }
-      else if (result == UserConstant.WrongPassword)
+      return Ok(new
       {
-        return BadRequest(UserConstant.WrongPassword);
-      }
-      return Ok(result);
+        token = new JwtSecurityTokenHandler().WriteToken(result),
+        expiration = result.ValidTo
+      });
     }
   }
 }

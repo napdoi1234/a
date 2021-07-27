@@ -5,7 +5,7 @@ namespace ELibrary.Data.Entities
 {
   public class BookBorrowingRequest
   {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string UserId { get; set; }
     public DateTime DateRequest { get; set; }
     public string Status { get; set; }

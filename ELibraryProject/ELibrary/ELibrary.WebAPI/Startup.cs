@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ELibrary.Data.EF;
 using ELibrary.Data.Entities;
+using ELibrary.Service.AdminService;
+using ELibrary.Service.AdminService.implements;
 using ELibrary.Service.CommonService;
 using ELibrary.Service.CommonService.implements;
 using ELibrary.Service.NormalService;
@@ -39,10 +41,15 @@ namespace ELibrarySolution.ELibraryWebAPI
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddControllers();
+      services.AddScoped<ModelValidationAttribute>();
 
       services.AddScoped<IBorrowingBookService, BorrowingBookService>();
-      services.AddScoped<ModelValidationAttribute>();
       services.AddScoped<IAuthenticationService, AuthenticationService>();
+      services.AddScoped<IBookService, BookService>();
+      services.AddScoped<IBookCommonService, BookCommonService>();
+      services.AddScoped<IConfirmBookService, ConfirmBookService>();
+      services.AddScoped<ICategoryService, CategoryService>();
+
       services.AddDbContext<ELibraryDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ELibrary")));
 

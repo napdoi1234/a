@@ -1,41 +1,45 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ELibrary.Data.EF;
 using ELibrary.Data.Entities;
 using ELibrary.Utilities.DTO;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace ELibrary.Service.AdminService.implements
 {
   public class CategoryService : ICategoryService
   {
     private readonly ELibraryDbContext _context;
-    public CategoryService(ELibraryDbContext context)
+    private readonly ILogger<CategoryService> _logger;
+    public CategoryService(ELibraryDbContext context, ILogger<CategoryService> logger)
     {
       _context = context;
+      _logger = logger;
     }
 
     public async Task<CategoryDTO> Add(CategoryDTO requestDTO)
     {
-      CategoryDTO category = null;
-
       var categoryEntity = new Category()
       {
-        Name = requestDTO.Name
+        Id = new Guid(),
+        Name = requestDTO.Name,
       };
       _context.Categories.Add(categoryEntity);
       await _context.SaveChangesAsync();
 
-      category = new CategoryDTO
+      var category = new CategoryDTO()
       {
-        Id = category.Id,
+        Id = categoryEntity.Id,
         Name = categoryEntity.Name,
       };
 
       return category;
     }
 
-    public async Task<bool> Delete(int id)
+    public async Task<bool> Delete(Guid id)
     {
       var category = await _context.Categories.FindAsync(id);
       if (category == null)
@@ -45,6 +49,18 @@ namespace ELibrary.Service.AdminService.implements
       _context.Categories.Remove(category);
       await _context.SaveChangesAsync();
       return true;
+    }
+
+    public async Task<CategoryDTO> FindById(Guid id)
+    {
+      var category = await _context.Categories.FindAsync(id);
+      if (category == null) return null;
+      var result = new CategoryDTO
+      {
+        Id = category.Id,
+        Name = category.Name,
+      };
+      return result;
     }
 
     public async Task<CategoryDTO> Update(CategoryDTO requestDTO)
@@ -69,22 +85,22 @@ namespace ELibrary.Service.AdminService.implements
           Id = category.Id,
           Name = category.Name,
         };
-        return result;
       }
       catch
       {
-        return result;
+        _logger.LogInformation("Some errors happen when using database");
       }
+      return result;
     }
 
-    public async Task<PagingResult<CategoryDTO>> View(CategoryDTO requestDTO)
+    public async Task<PagingResult<CategoryDTO>> View(PagingRequest request)
     {
       var categories = _context.Categories.Select(x => new CategoryDTO { Id = x.Id, Name = x.Name });
 
       int totalRow = await categories.CountAsync();
 
-      var data = await categories.Skip((requestDTO.PageIndex - 1) * requestDTO.PageSize)
-          .Take(requestDTO.PageSize)
+      var data = await categories.Skip((request.PageIndex - 1) * request.PageSize)
+          .Take(request.PageSize)
           .Select(x => new CategoryDTO()
           {
             Id = x.Id,
@@ -95,8 +111,8 @@ namespace ELibrary.Service.AdminService.implements
       {
         Items = data,
         TotalRecords = totalRow,
-        PageSize = requestDTO.PageSize,
-        PageIndex = requestDTO.PageIndex,
+        PageSize = request.PageSize,
+        PageIndex = request.PageIndex,
       };
 
       return pagedResult;

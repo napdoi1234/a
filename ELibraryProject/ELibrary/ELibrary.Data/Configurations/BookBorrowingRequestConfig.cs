@@ -10,8 +10,6 @@ namespace ELibrary.Data.Configurations
     {
       builder.HasKey(x => x.Id);
 
-      builder.Property(x => x.Id).UseIdentityColumn();
-
       builder.Property(x => x.Status).HasDefaultValue(BorrowConstant.WaittingStatus);
 
       builder.HasMany(x => x.DetailList);

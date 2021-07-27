@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using ELibrary.Data.Configurations;
 using ELibrary.Data.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -14,6 +15,10 @@ namespace ELibrary.Data.EF
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       base.OnModelCreating(modelBuilder);
+      foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+      {
+        relationship.DeleteBehavior = DeleteBehavior.Restrict;
+      }
 
       modelBuilder.ApplyConfiguration(new BookBorrowingRequestDetailsConfig());
 

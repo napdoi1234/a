@@ -7,6 +7,6 @@ namespace ELibrary.Service.AdminService
   {
     public Task<bool> ConfirmBorrowedBooks(BookConfirmRequestDTO requestDTO);
 
-    public Task<PagingResult<BookBorrowingRequestDTO>> ViewBorrowedBooks(BookBorrowingRequestDTO requestDTO);
+    public Task<PagingResult<BookBorrowingRequestDTO>> ViewBorrowedBooks(PagingRequest requestDTO);
   }
 }

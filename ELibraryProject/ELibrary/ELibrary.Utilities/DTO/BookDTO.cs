@@ -1,12 +1,14 @@
+using System;
 using System.Collections.Generic;
 
 namespace ELibrary.Utilities.DTO
 {
-  public class BookDTO : PagingRequest<BookDTO>
+  public class BookDTO : PagingRequest
   {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string Name { get; set; }
     public string Author { get; set; }
-    public List<int> CategoryID { get; set; }
+    public List<Guid> CategoryID { get; set; }
+    public List<string> CategoryName { get; set; }
   }
 }

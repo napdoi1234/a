@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -14,9 +15,9 @@ namespace ELibrary.WebAPI.Validation
 
     protected override ValidationResult IsValid(object value, ValidationContext validationContext)
     {
-      var strings = value as List<string>;
+      List<Guid> strings = value as List<Guid>;
       if (strings.Count > _length)
-        return new ValidationResult("You can not borrow over than five books");
+        return new ValidationResult("You can not borrow over than five books in a request");
       return ValidationResult.Success;
     }
   }

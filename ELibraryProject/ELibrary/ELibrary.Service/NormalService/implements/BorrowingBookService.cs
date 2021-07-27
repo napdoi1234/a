@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,15 +8,18 @@ using ELibrary.Utilities.Constants.BookBorrowing;
 using ELibrary.Utilities.Constants.User;
 using ELibrary.Utilities.DTO;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace ELibrary.Service.NormalService.implements
 {
   public class BorrowingBookService : IBorrowingBookService
   {
     private readonly ELibraryDbContext _context;
-    public BorrowingBookService(ELibraryDbContext context)
+    private readonly ILogger<BorrowingBookService> _logger;
+    public BorrowingBookService(ELibraryDbContext context, ILogger<BorrowingBookService> logger)
     {
       _context = context;
+      _logger = logger;
     }
     public async Task<BookBorrowingRequestDTO> BorrowBooks(BookBorrowingRequestDTO requestDTO)
     {
@@ -38,7 +42,7 @@ namespace ELibrary.Service.NormalService.implements
         x.UserId == userRequest.Id
         && x.DateRequest <= nowDay
         && x.DateRequest > newestDay);
-        if (canRequest > 3)
+        if (canRequest >= 3)
         {
           bookRequest = new BookBorrowingRequestDTO { Message = BorrowConstant.LimitRequest };
           return bookRequest;
@@ -46,6 +50,7 @@ namespace ELibrary.Service.NormalService.implements
 
         var requestEntity = new BookBorrowingRequest
         {
+          Id = new Guid(),
           UserId = requestDTO.UserId,
           DateRequest = requestDTO.DateRequest,
           Users = new List<User> { userRequest },
@@ -55,7 +60,7 @@ namespace ELibrary.Service.NormalService.implements
 
         BookBorrowingRequestDetails detailRequest = null;
         Book book = null;
-        foreach (int bookId in requestDTO.IdBooks)
+        foreach (Guid bookId in requestDTO.IdBooks)
         {
           book = await _context.Books.FindAsync(bookId);
           detailRequest = new BookBorrowingRequestDetails
@@ -70,7 +75,7 @@ namespace ELibrary.Service.NormalService.implements
         await _context.SaveChangesAsync();
         await transaction.CommitAsync();
 
-        return new BookBorrowingRequestDTO
+        bookRequest = new BookBorrowingRequestDTO
         {
           Id = requestEntity.Id,
           Status = requestEntity.Status,
@@ -78,18 +83,19 @@ namespace ELibrary.Service.NormalService.implements
       }
       catch
       {
-        return null;
+        _logger.LogInformation("Some errors happen when using database");
       }
+      return bookRequest;
     }
 
     public async Task<PagingResult<BookBorrowingRequestDTO>> ViewBorrowedBooks(BookBorrowingRequestDTO requestDTO)
     {
-      var borrowedBooks = from bb in _context.BookBorrowingRequests
-                          join d in _context.BookBorrowingRequestDetails on bb.Id equals d.RequestId
-                          join b in _context.Books on d.BookId equals b.Id
-                          where bb.UserId == requestDTO.UserId
-                          orderby bb.Id
-                          select new { bb, b };
+      var borrowedBooks = from borrowBook in _context.BookBorrowingRequests
+                          join borrowBookDetail in _context.BookBorrowingRequestDetails on borrowBook.Id equals borrowBookDetail.RequestId
+                          join book in _context.Books on borrowBookDetail.BookId equals book.Id
+                          where borrowBook.UserId == requestDTO.UserId
+                          orderby borrowBook.Id
+                          select new { borrowBook, book };
 
       int totalRow = await borrowedBooks.CountAsync();
 
@@ -97,10 +103,10 @@ namespace ELibrary.Service.NormalService.implements
         .Take(requestDTO.PageSize)
         .Select(x => new BookBorrowingRequestDTO()
         {
-          Id = x.bb.Id,
-          DateRequest = x.bb.DateRequest,
-          Status = x.bb.Status,
-          NameBook = x.b.Name,
+          Id = x.borrowBook.Id,
+          DateRequest = x.borrowBook.DateRequest,
+          Status = x.borrowBook.Status,
+          NameBook = x.book.Name,
         }).ToListAsync();
 
       var pagedResult = new PagingResult<BookBorrowingRequestDTO>()

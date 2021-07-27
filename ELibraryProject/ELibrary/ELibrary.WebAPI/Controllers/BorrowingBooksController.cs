@@ -9,34 +9,48 @@ using Microsoft.AspNetCore.Mvc;
 namespace ELibrary.WebAPI.Controllers
 {
   [ApiController]
-  [Route("api/books")]
+  [Route("api/book")]
   [Authorize(Roles = UserConstant.NormalRole)]
   public class BorrowingBooksController : ControllerBase
   {
-    private readonly IBorrowingBookService _bBookService;
-    private readonly IBookService _bookService;
-    public BorrowingBooksController(IBorrowingBookService bBookService, IBookService bookService)
+    private readonly IBorrowingBookService _borrowBookService;
+    private readonly IBookCommonService _bookService;
+    public BorrowingBooksController(IBorrowingBookService borrowBookService, IBookCommonService bookService)
     {
-      _bBookService = bBookService;
+      _borrowBookService = borrowBookService;
       _bookService = bookService;
     }
 
-    [HttpPost("borrowed_books")]
-    public async Task<ActionResult<PagingResult<BookBorrowingRequestDTO>>> ViewBorrowedBooks(BookBorrowingRequestDTO requestDTO)
+    [HttpGet("borrowed")]
+    public async Task<ActionResult<PagingResult<BookBorrowingRequestDTO>>> ViewBorrowedBooks
+    ([FromQuery(Name = "userId")] string userId, [FromQuery(Name = "pageSize")] int pageSize,
+    [FromQuery(Name = "pageIndex")] int pageIndex = 1)
     {
-      return Ok(await _bBookService.ViewBorrowedBooks(requestDTO));
+      var requestDTO = new BookBorrowingRequestDTO
+      {
+        UserId = userId,
+        PageIndex = pageIndex,
+        PageSize = pageSize,
+      };
+      return Ok(await _borrowBookService.ViewBorrowedBooks(requestDTO));
     }
 
-    [HttpPost]
-    public async Task<ActionResult<PagingResult<BookDTO>>> ViewBooks(BookDTO requestDTO)
+    [HttpGet]
+    public async Task<ActionResult<PagingResult<BookDTO>>> ViewBooks(
+    [FromQuery(Name = "pageSize")] int pageSize, [FromQuery(Name = "pageIndex")] int pageIndex = 1)
     {
-      return Ok(await _bookService.View(requestDTO));
+      var request = new PagingRequest
+      {
+        PageSize = pageSize,
+        PageIndex = pageIndex,
+      };
+      return Ok(await _bookService.View(request));
     }
 
     [HttpPost("borrowed")]
     public async Task<ActionResult<BookBorrowingRequestDTO>> BorrowedBooks(BookBorrowingRequestDTO requestDTO)
     {
-      var result = await _bBookService.BorrowBooks(requestDTO);
+      var result = await _borrowBookService.BorrowBooks(requestDTO);
       if (result.Message != null)
       {
         return BadRequest(result.Message);

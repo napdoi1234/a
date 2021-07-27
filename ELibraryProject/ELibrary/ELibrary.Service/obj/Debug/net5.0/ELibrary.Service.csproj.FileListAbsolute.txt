@@ -15,3 +15,6 @@ d:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Service\bin\Debug\net5.0\ELib
 d:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Service\bin\Debug\net5.0\ELibrary.Utilities.pdb
 d:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Service\bin\Debug\net5.0\ELibrary.Data.pdb
 d:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Service\obj\Debug\net5.0\ELibrary.Service.csproj.CopyComplete
+d:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Service\bin\Debug\net5.0\ELibrary.Service.runtimeconfig.json
+d:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Service\bin\Debug\net5.0\ELibrary.Service.runtimeconfig.dev.json
+d:\tranning-nash\ELibraryProject\ELibrary\ELibrary.Service\obj\Debug\net5.0\ELibrary.Service.genruntimeconfig.cache
