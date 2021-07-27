@@ -4,62 +4,75 @@ using ELibrary.Utilities.DTO;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using ELibrary.Utilities.Constants.BookBorrowing;
+using Microsoft.Extensions.Logging;
 
 namespace ELibrary.Service.AdminService.implements
 {
   public class ConfirmBookService : IConfirmBookService
   {
     private readonly ELibraryDbContext _context;
-    public ConfirmBookService(ELibraryDbContext context)
+    private readonly ILogger<ConfirmBookService> _logger;
+    public ConfirmBookService(ELibraryDbContext context, ILogger<ConfirmBookService> logger)
     {
       _context = context;
+      _logger = logger;
     }
     public async Task<bool> ConfirmBorrowedBooks(BookConfirmRequestDTO requestDTO)
     {
-      var borrowedBooksRequest = await _context.BookBorrowingRequests.FindAsync(requestDTO.Id);
-      if (borrowedBooksRequest == null || borrowedBooksRequest.Status == BorrowConstant.ApproveStatus
-      || borrowedBooksRequest.Status == BorrowConstant.RejectStatus)
+      using var transaction = await _context.Database.BeginTransactionAsync();
+      try
       {
-        return false;
-      }
+        var borrowedBooksRequest = await _context.BookBorrowingRequests.Where(x => x.Id == requestDTO.Id).Include(x => x.Users).FirstOrDefaultAsync();
+        if (borrowedBooksRequest == null || borrowedBooksRequest.Status == BorrowConstant.ApproveStatus
+        || borrowedBooksRequest.Status == BorrowConstant.RejectStatus)
+        {
+          return false;
+        }
 
-      borrowedBooksRequest.Status = requestDTO.Status;
-      var userConfirm = await _context.Users.FindAsync(requestDTO.UserId);
-      borrowedBooksRequest.Users.Add(userConfirm);
-      borrowedBooksRequest.ManagerId = userConfirm.Id;
-      _context.BookBorrowingRequests.Update(borrowedBooksRequest);
-      await _context.SaveChangesAsync();
-      return true;
+        borrowedBooksRequest.Status = requestDTO.Status;
+        var userConfirm = await _context.Users.FindAsync(requestDTO.UserId);
+        borrowedBooksRequest.Users.Add(userConfirm);
+        borrowedBooksRequest.ManagerId = userConfirm.Id;
+        _context.BookBorrowingRequests.Update(borrowedBooksRequest);
+        await _context.SaveChangesAsync();
+        await transaction.CommitAsync();
+        return true;
+      }
+      catch
+      {
+        _logger.LogInformation("Errors happen when using database");
+      }
+      return false;
     }
 
-    public async Task<PagingResult<BookBorrowingRequestDTO>> ViewBorrowedBooks(BookBorrowingRequestDTO requestDTO)
+    public async Task<PagingResult<BookBorrowingRequestDTO>> ViewBorrowedBooks(PagingRequest request)
     {
-      var borrowedBooks = from bb in _context.BookBorrowingRequests
-                          join d in _context.BookBorrowingRequestDetails on bb.Id equals d.RequestId
-                          join b in _context.Books on d.BookId equals b.Id
-                          join u in _context.Users on bb.UserId equals u.Id
-                          orderby bb.Id
-                          select new { bb, b, u };
+      var borrowedBooks = from borrowBook in _context.BookBorrowingRequests
+                          join borrowBookDetail in _context.BookBorrowingRequestDetails on borrowBook.Id equals borrowBookDetail.RequestId
+                          join book in _context.Books on borrowBookDetail.BookId equals book.Id
+                          join user in _context.Users on borrowBook.UserId equals user.Id
+                          orderby borrowBook.Id
+                          select new { borrowBook, book, user };
 
       int totalRow = await borrowedBooks.CountAsync();
 
-      var data = await borrowedBooks.Skip((requestDTO.PageIndex - 1) * requestDTO.PageSize)
-          .Take(requestDTO.PageSize)
+      var data = await borrowedBooks.Skip((request.PageIndex - 1) * request.PageSize)
+          .Take(request.PageSize)
           .Select(x => new BookBorrowingRequestDTO()
           {
-            Id = x.bb.Id,
-            UserName = x.u.FullName,
-            DateRequest = x.bb.DateRequest,
-            Status = x.bb.Status,
-            NameBook = x.b.Name,
+            Id = x.borrowBook.Id,
+            UserName = x.user.FullName,
+            DateRequest = x.borrowBook.DateRequest,
+            Status = x.borrowBook.Status,
+            NameBook = x.book.Name,
           }).ToListAsync();
 
       var pagedResult = new PagingResult<BookBorrowingRequestDTO>()
       {
         Items = data,
         TotalRecords = totalRow,
-        PageSize = requestDTO.PageSize,
-        PageIndex = requestDTO.PageIndex,
+        PageSize = request.PageSize,
+        PageIndex = request.PageIndex,
       };
 
       return pagedResult;

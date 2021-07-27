@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ELibrary.WebAPI\ELibrary.WebAPI.csproj" />
-    <ProjectReference Include="..\ELibrary.AdminAPI\ELibrary.AdminAPI.csproj" />
   </ItemGroup>
 
 </Project>

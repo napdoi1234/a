@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ELibrary.Utilities.DTO
 {
-  public abstract class PagingRequest<T>
+  public class PagingRequest
   {
     public int PageIndex { get; set; }
     [Required]

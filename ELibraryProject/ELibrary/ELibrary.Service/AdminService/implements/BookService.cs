@@ -1,43 +1,45 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ELibrary.Data.EF;
 using ELibrary.Data.Entities;
 using ELibrary.Utilities.DTO;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace ELibrary.Service.AdminService.implements
 {
   public class BookService : IBookService
   {
     private readonly ELibraryDbContext _context;
-    public BookService(ELibraryDbContext context)
+    private readonly ILogger<BookService> _logger;
+    public BookService(ELibraryDbContext context, ILogger<BookService> logger)
     {
       _context = context;
+      _logger = logger;
     }
 
     public async Task<BookDTO> Add(BookDTO requestDTO)
     {
-      BookDTO book = null;
-
       var bookEntity = new Book()
       {
+        Id = new Guid(),
         Name = requestDTO.Name,
         Author = requestDTO.Author,
       };
       _context.Books.Add(bookEntity);
       await _context.SaveChangesAsync();
 
-      book = new BookDTO
+      return new BookDTO
       {
         Id = bookEntity.Id,
         Name = bookEntity.Name,
         Author = bookEntity.Author
       };
-
-      return book;
     }
 
-    public async Task<bool> Delete(int id)
+    public async Task<bool> Delete(Guid id)
     {
       var book = await _context.Books.FindAsync(id);
       if (book == null)
@@ -55,7 +57,7 @@ namespace ELibrary.Service.AdminService.implements
       using var transaction = await _context.Database.BeginTransactionAsync();
       try
       {
-        var book = await _context.Books.FindAsync(requestDTO.Id);
+        var book = await _context.Books.Where(x => x.Id == requestDTO.Id).Include(x => x.CategoryList).FirstOrDefaultAsync();
         if (book == null)
         {
           return null;
@@ -63,6 +65,18 @@ namespace ELibrary.Service.AdminService.implements
 
         book.Name = requestDTO.Name;
         book.Author = requestDTO.Author;
+        if (book.CategoryList == null)
+        {
+          book.CategoryList = new List<Category>();
+        }
+
+        Category category = null;
+        foreach (Guid id in requestDTO.CategoryID)
+        {
+          category = await _context.Categories.FindAsync(id);
+          if (category == null) return null;
+          book.CategoryList.Add(category);
+        }
         _context.Books.Update(book);
         await _context.SaveChangesAsync();
         await transaction.CommitAsync();
@@ -71,30 +85,33 @@ namespace ELibrary.Service.AdminService.implements
         {
           Id = book.Id,
           Name = book.Name,
-          Author = book.Author
+          Author = book.Author,
+          CategoryName = book.CategoryList.Select(x => x.Name).ToList(),
         };
-        return result;
+
       }
       catch
       {
-        return result;
+        _logger.LogInformation("Some errors happen when using database");
       }
+      return result;
     }
 
-    public async Task<bool> AddCategory(BookDTO requestDTO)
+    public async Task<BookDTO> FindById(Guid id)
     {
-      var book = await _context.Books.FindAsync(requestDTO.Id);
-      if (book == null) return false;
+      var book = await _context.Books.Where(x => x.Id == id).Include(x => x.CategoryList).FirstOrDefaultAsync();
+      if (book == null) return null;
 
-      Category category = null;
-      foreach (int id in requestDTO.CategoryID)
+      List<string> category = book.CategoryList == null
+      ? new List<string>() : book.CategoryList.Select(x => x.Name).ToList();
+      var result = new BookDTO
       {
-        category = await _context.Categories.FindAsync(id);
-        book.CategoryList.Add(category);
-      }
-      _context.Books.Update(book);
-      await _context.SaveChangesAsync();
-      return true;
+        Id = book.Id,
+        Name = book.Name,
+        Author = book.Author,
+        CategoryName = category
+      };
+      return result;
     }
   }
 }

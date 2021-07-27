@@ -21,8 +21,8 @@ namespace ELibrary.Data.Migrations
 
             modelBuilder.Entity("BookBorrowingRequestUser", b =>
                 {
-                    b.Property<int>("RequestListId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("RequestListId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UsersId")
                         .HasColumnType("nvarchar(450)");
@@ -36,11 +36,11 @@ namespace ELibrary.Data.Migrations
 
             modelBuilder.Entity("BookCategory", b =>
                 {
-                    b.Property<int>("BookListId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("BookListId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("CategoryListId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CategoryListId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("BookListId", "CategoryListId");
 
@@ -51,12 +51,9 @@ namespace ELibrary.Data.Migrations
 
             modelBuilder.Entity("ELibrary.Data.Entities.Book", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
@@ -72,12 +69,9 @@ namespace ELibrary.Data.Migrations
 
             modelBuilder.Entity("ELibrary.Data.Entities.BookBorrowingRequest", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateRequest")
                         .HasColumnType("datetime2");
@@ -100,11 +94,11 @@ namespace ELibrary.Data.Migrations
 
             modelBuilder.Entity("ELibrary.Data.Entities.BookBorrowingRequestDetails", b =>
                 {
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("BookId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("RequestId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("RequestId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("BookId", "RequestId");
 
@@ -115,12 +109,9 @@ namespace ELibrary.Data.Migrations
 
             modelBuilder.Entity("ELibrary.Data.Entities.Category", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -339,13 +330,13 @@ namespace ELibrary.Data.Migrations
                     b.HasOne("ELibrary.Data.Entities.BookBorrowingRequest", null)
                         .WithMany()
                         .HasForeignKey("RequestListId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ELibrary.Data.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -354,13 +345,13 @@ namespace ELibrary.Data.Migrations
                     b.HasOne("ELibrary.Data.Entities.Book", null)
                         .WithMany()
                         .HasForeignKey("BookListId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ELibrary.Data.Entities.Category", null)
                         .WithMany()
                         .HasForeignKey("CategoryListId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -369,13 +360,13 @@ namespace ELibrary.Data.Migrations
                     b.HasOne("ELibrary.Data.Entities.Book", "Book")
                         .WithMany("RequestDetailList")
                         .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ELibrary.Data.Entities.BookBorrowingRequest", "Request")
                         .WithMany("DetailList")
                         .HasForeignKey("RequestId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Book");
@@ -388,7 +379,7 @@ namespace ELibrary.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -397,7 +388,7 @@ namespace ELibrary.Data.Migrations
                     b.HasOne("ELibrary.Data.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -406,7 +397,7 @@ namespace ELibrary.Data.Migrations
                     b.HasOne("ELibrary.Data.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -415,13 +406,13 @@ namespace ELibrary.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ELibrary.Data.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -430,7 +421,7 @@ namespace ELibrary.Data.Migrations
                     b.HasOne("ELibrary.Data.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
