@@ -52,7 +52,7 @@ namespace ELibrary.Service.NormalService.implements
         {
           Id = new Guid(),
           UserId = requestDTO.UserId,
-          DateRequest = requestDTO.DateRequest,
+          DateRequest = nowDay,
           Users = new List<User> { userRequest },
         };
         _context.BookBorrowingRequests.Add(requestEntity);
@@ -92,10 +92,13 @@ namespace ELibrary.Service.NormalService.implements
     {
       var borrowedBooks = from borrowBook in _context.BookBorrowingRequests
                           join borrowBookDetail in _context.BookBorrowingRequestDetails on borrowBook.Id equals borrowBookDetail.RequestId
+                          join user in _context.Users on borrowBook.ManagerId equals user.Id into subUser
+                          from child in subUser.DefaultIfEmpty()
                           join book in _context.Books on borrowBookDetail.BookId equals book.Id
                           where borrowBook.UserId == requestDTO.UserId
                           orderby borrowBook.Id
-                          select new { borrowBook, book };
+                          select new { borrowBook, book, userName = child.FullName ?? String.Empty };
+
 
       int totalRow = await borrowedBooks.CountAsync();
 
@@ -107,6 +110,7 @@ namespace ELibrary.Service.NormalService.implements
           DateRequest = x.borrowBook.DateRequest,
           Status = x.borrowBook.Status,
           NameBook = x.book.Name,
+          UserName = x.userName,
         }).ToListAsync();
 
       var pagedResult = new PagingResult<BookBorrowingRequestDTO>()

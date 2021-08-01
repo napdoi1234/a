@@ -6,6 +6,6 @@ namespace ELibrary.Service.CommonService
 {
   public interface IAuthenticationService
   {
-    public Task<JwtSecurityToken> Authenticate(LoginRequestDTO requestDTO);
+    public Task<string[]> Authenticate(LoginRequestDTO requestDTO);
   }
 }

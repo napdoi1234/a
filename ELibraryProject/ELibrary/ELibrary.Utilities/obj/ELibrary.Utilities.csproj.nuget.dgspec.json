@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Utilities\\ELibrary.Utilities.csproj": {}
+    "D:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Utilities\\ELibrary.Utilities.csproj": {}
   },
   "projects": {
-    "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Utilities\\ELibrary.Utilities.csproj": {
+    "D:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Utilities\\ELibrary.Utilities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Utilities\\ELibrary.Utilities.csproj",
+        "projectUniqueName": "D:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Utilities\\ELibrary.Utilities.csproj",
         "projectName": "ELibrary.Utilities",
-        "projectPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Utilities\\ELibrary.Utilities.csproj",
+        "projectPath": "D:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Utilities\\ELibrary.Utilities.csproj",
         "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Utilities\\obj\\",
+        "outputPath": "D:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Utilities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config"

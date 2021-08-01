@@ -24,15 +24,16 @@ namespace ELibrary.Service.CommonService.implements
       _config = config;
     }
 
-    public async Task<JwtSecurityToken> Authenticate(LoginRequestDTO requestDTO)
+    public async Task<string[]> Authenticate(LoginRequestDTO requestDTO)
     {
+      var result = new string[2];
       var user = await _userManager.FindByNameAsync(requestDTO.UserName);
       if (user == null)
       {
         return null;
       }
-      var result = await _signInManager.PasswordSignInAsync(user, requestDTO.Password, false, false);
-      if (!result.Succeeded)
+      var login = await _signInManager.PasswordSignInAsync(user, requestDTO.Password, false, false);
+      if (!login.Succeeded)
       {
         return null;
       }
@@ -42,6 +43,7 @@ namespace ELibrary.Service.CommonService.implements
       var authClaims = new[]
       {
         new Claim(ClaimTypes.Name, user.FullName),
+        new Claim(ClaimTypes.UserData, user.Id),
         new Claim(ClaimTypes.Role, string.Join(";",userRoles)),
       };
 
@@ -55,7 +57,10 @@ namespace ELibrary.Service.CommonService.implements
           signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
           );
 
-      return token;
+      result[0] = new JwtSecurityTokenHandler().WriteToken(token);
+      result[1] = string.Join(";", userRoles);
+
+      return result;
     }
   }
 }

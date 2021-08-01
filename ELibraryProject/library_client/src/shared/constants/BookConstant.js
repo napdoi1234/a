@@ -1,0 +1,25 @@
+const BookConstant = {
+  IdHeader: 'Id',
+  NameHeader: 'Title Book',
+  AuthorHeader: 'Author',
+  CategoryHeader: 'Categories',
+  UserHeader: 'User Request',
+  ManagerHeader: 'Manager Confirm',
+  StatusHeader: 'Status Request',
+  DateHeader: 'Date Request',
+  ActionHeader: 'Action',
+  DetailHeader: 'Detail',
+  DetailField: 'View detail',
+  NoneOrder: '-- Sort (NONE)',
+  DESCOrder: '-- Sort DESC',
+  ASCOrder: '-- Sort ASC',
+  BooksURL: 'https://localhost:5001/api/admin/book',
+  BookURL: 'https://localhost:5001/api/admin/book/',
+  BorrowedBookURL: 'https://localhost:5001/api/admin/borrow_book',
+  BorrowingBookURL: 'https://localhost:5001/api/book/borrowed',
+  NormalBooksURL: 'https://localhost:5001/api/book',
+  PageSize: 6,
+  PageIndex: 1,
+};
+
+export default BookConstant;

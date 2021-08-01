@@ -39,7 +39,7 @@ namespace ELibrary.WebAPI.Controllers
       {
         return Ok(result);
       }
-      return BadRequest("Not found category");
+      return BadRequest(result);
     }
 
     [HttpPost]
@@ -56,7 +56,7 @@ namespace ELibrary.WebAPI.Controllers
       {
         return Ok(result);
       }
-      return BadRequest("Not found category");
+      return BadRequest(result);
     }
 
     [HttpDelete("{id}")]
@@ -67,7 +67,7 @@ namespace ELibrary.WebAPI.Controllers
       {
         return Ok();
       }
-      return BadRequest("Not found category");
+      return BadRequest();
     }
   }
 

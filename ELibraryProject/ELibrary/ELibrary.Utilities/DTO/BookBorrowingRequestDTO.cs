@@ -8,7 +8,6 @@ namespace ELibrary.Utilities.DTO
   public class BookBorrowingRequestDTO : PagingRequest
   {
     public Guid Id { get; set; }
-    [Required]
     public string UserId { get; set; }
     public string UserName { get; set; }
     public DateTime DateRequest { get; set; }

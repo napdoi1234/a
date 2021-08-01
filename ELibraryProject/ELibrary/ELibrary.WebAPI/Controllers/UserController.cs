@@ -27,8 +27,8 @@ namespace ELibrary.WebAPI.Controllers
       }
       return Ok(new
       {
-        token = new JwtSecurityTokenHandler().WriteToken(result),
-        expiration = result.ValidTo
+        token = result[0],
+        role = result[1]
       });
     }
   }

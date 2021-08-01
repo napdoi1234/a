@@ -1,6 +1,10 @@
 import { Formik, } from 'formik';
 import { Form, Button, InputGroup, Row, Col } from 'react-bootstrap';
 import * as yup from 'yup';
+import React, { useContext } from 'react';
+import CurrentUserContext from '../../../contexts/CurrentUserContext';
+import LoginService from '../../../service/common/LoginService';
+import { useHistory } from 'react-router-dom';
 
 const schema = yup.object().shape({
   user: yup.string().required(),
@@ -12,35 +16,60 @@ const initialValues = {
   password: '',
 }
 const LoginPage = () => {
+  const { setCurrentUser } = useContext(CurrentUserContext);
+  const history = useHistory();
+
+  const handleLogin = (values, { setSubmitting }) => {
+    LoginService({ user: values.user, password: values.password }).then(function (response) {
+      // handle success
+      setCurrentUser({
+        token: response.data.token,
+        role: response.data.role,
+      });
+      window.localStorage.setItem('token', response.data.token);
+      window.localStorage.setItem('role', response.data.role);
+      history.push('/books');
+    })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+        setSubmitting(false);
+      })
+  }
+
   return (
     <>
       <Formik
         validationSchema={schema}
-        onSubmit={console.log}
+        onSubmit={handleLogin}
         initialValues={initialValues}
       >
         {({
           handleSubmit,
           handleChange,
+          handleBlur,
           values,
           errors,
+          touched,
+          isSubmitting,
         }) => (
           <Form noValidate onSubmit={handleSubmit}>
             <Row className="mb-3">
               <Form.Group as={Col} md="3" className="mb-3" controlId="validationFormikUsername">
-                <Form.Label>Email</Form.Label>
+                <Form.Label>User Name</Form.Label>
                 <InputGroup hasValidation>
                   <Form.Control
-                    type="email"
-                    placeholder="Email"
+                    type="text"
+                    placeholder="User Name"
                     aria-describedby="inputGroupPrepend"
-                    name="email"
-                    value={values.email}
+                    name="user"
+                    value={values.user}
                     onChange={handleChange}
-                    isInvalid={!!errors.email}
+                    onBlur={handleBlur}
+                    isInvalid={touched.user && errors.user}
                   />
                   <Form.Control.Feedback type="invalid">
-                    {errors.email}
+                    {errors.user}
                   </Form.Control.Feedback>
                 </InputGroup>
               </Form.Group>
@@ -55,7 +84,8 @@ const LoginPage = () => {
                     name="password"
                     value={values.password}
                     onChange={handleChange}
-                    isInvalid={!!errors.password}
+                    onBlur={handleBlur}
+                    isInvalid={touched.password && errors.password}
                   />
 
                   <Form.Control.Feedback type="invalid">
@@ -64,7 +94,11 @@ const LoginPage = () => {
                 </InputGroup>
               </Form.Group>
             </Row>
-            <Button type="submit" variant="primary">Submit form</Button>
+            <Row className="mb-3">
+              <Col sm={3}>
+                <Button type="submit" variant="primary" disabled={isSubmitting}>Login</Button>
+              </Col>
+            </Row>
           </Form>
         )}
       </Formik>

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "zi3CmKMyzXeMW/3etbnAutOF6oPTwDVy4kvQxOBVvlO7+7mgHlRhBG9EOLoHr1k0rnqLrsC38MUgdzhkIufufQ==",
+  "dgSpecHash": "WKFbR7iwP3uBEseDZLGIrWZlQ+g2KnMeQWvwRy2E7LaAHO+FFmNiksR+cr4h1MflqBuxqeFSm9FdNWeyCL6heQ==",
   "success": true,
   "projectFilePath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.WebAPI\\ELibrary.WebAPI.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.8\\microsoft.aspnetcore.authentication.jwtbearer.5.0.8.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.8\\microsoft.aspnetcore.cryptography.internal.5.0.8.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.8\\microsoft.aspnetcore.cryptography.keyderivation.5.0.8.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.aspnetcore.dataprotection\\2.2.0\\microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",

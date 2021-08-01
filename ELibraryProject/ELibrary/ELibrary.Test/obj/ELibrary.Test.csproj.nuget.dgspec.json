@@ -4,77 +4,6 @@
     "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Test\\ELibrary.Test.csproj": {}
   },
   "projects": {
-    "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.AdminAPI\\ELibrary.AdminAPI.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.AdminAPI\\ELibrary.AdminAPI.csproj",
-        "projectName": "ELibrary.AdminAPI",
-        "projectPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.AdminAPI\\ELibrary.AdminAPI.csproj",
-        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.AdminAPI\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net5.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
-            "projectReferences": {
-              "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj": {
-                "projectPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj"
-              },
-              "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Service\\ELibrary.Service.csproj": {
-                "projectPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Service\\ELibrary.Service.csproj"
-              },
-              "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Utilities\\ELibrary.Utilities.csproj": {
-                "projectPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Utilities\\ELibrary.Utilities.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
-          "dependencies": {
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[5.6.3, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
     "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -113,6 +42,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.8, )"
@@ -264,9 +197,6 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.AdminAPI\\ELibrary.AdminAPI.csproj": {
-                "projectPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.AdminAPI\\ELibrary.AdminAPI.csproj"
-              },
               "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.WebAPI\\ELibrary.WebAPI.csproj": {
                 "projectPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.WebAPI\\ELibrary.WebAPI.csproj"
               }
@@ -283,21 +213,27 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "MSTest.TestAdapter": {
-              "target": "Package",
-              "version": "[2.2.3, )"
-            },
-            "MSTest.TestFramework": {
-              "target": "Package",
-              "version": "[2.2.3, )"
-            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[16.9.4, )"
+              "version": "[16.10.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.16.1, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.13.2, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[4.0.0, )"
             },
             "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[3.0.2, )"
+              "version": "[3.1.0, )"
             }
           },
           "imports": [
@@ -418,6 +354,10 @@
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[5.0.8, )"
+            },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

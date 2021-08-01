@@ -6498,11 +6498,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj",
+      "projectUniqueName": "D:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj",
       "projectName": "ELibrary.Data",
-      "projectPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj",
+      "projectPath": "D:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj",
       "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-      "outputPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Data\\obj\\",
+      "outputPath": "D:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Data\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -6517,8 +6517,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Utilities\\ELibrary.Utilities.csproj": {
-              "projectPath": "d:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Utilities\\ELibrary.Utilities.csproj"
+            "D:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Utilities\\ELibrary.Utilities.csproj": {
+              "projectPath": "D:\\tranning-nash\\ELibraryProject\\ELibrary\\ELibrary.Utilities\\ELibrary.Utilities.csproj"
             }
           }
         }

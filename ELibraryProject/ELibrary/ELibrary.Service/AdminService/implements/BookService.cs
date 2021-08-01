@@ -41,11 +41,12 @@ namespace ELibrary.Service.AdminService.implements
 
     public async Task<bool> Delete(Guid id)
     {
-      var book = await _context.Books.FindAsync(id);
+      var book = await _context.Books.Include(x => x.CategoryList).FirstOrDefaultAsync(x => x.Id == id);
       if (book == null)
       {
         return false;
       };
+      book.CategoryList = null;
       _context.Books.Remove(book);
       await _context.SaveChangesAsync();
       return true;
@@ -57,7 +58,7 @@ namespace ELibrary.Service.AdminService.implements
       using var transaction = await _context.Database.BeginTransactionAsync();
       try
       {
-        var book = await _context.Books.Where(x => x.Id == requestDTO.Id).Include(x => x.CategoryList).FirstOrDefaultAsync();
+        var book = await _context.Books.Include(x => x.CategoryList).FirstOrDefaultAsync(x => x.Id == requestDTO.Id);
         if (book == null)
         {
           return null;
@@ -65,18 +66,16 @@ namespace ELibrary.Service.AdminService.implements
 
         book.Name = requestDTO.Name;
         book.Author = requestDTO.Author;
-        if (book.CategoryList == null)
-        {
-          book.CategoryList = new List<Category>();
-        }
+        var categories = new List<Category>();
 
         Category category = null;
         foreach (Guid id in requestDTO.CategoryID)
         {
           category = await _context.Categories.FindAsync(id);
           if (category == null) return null;
-          book.CategoryList.Add(category);
+          categories.Add(category);
         }
+        book.CategoryList = categories;
         _context.Books.Update(book);
         await _context.SaveChangesAsync();
         await transaction.CommitAsync();
@@ -99,17 +98,18 @@ namespace ELibrary.Service.AdminService.implements
 
     public async Task<BookDTO> FindById(Guid id)
     {
-      var book = await _context.Books.Where(x => x.Id == id).Include(x => x.CategoryList).FirstOrDefaultAsync();
+      var book = await _context.Books.Include(x => x.CategoryList).FirstOrDefaultAsync(x => x.Id == id);
       if (book == null) return null;
 
-      List<string> category = book.CategoryList == null
-      ? new List<string>() : book.CategoryList.Select(x => x.Name).ToList();
+      List<Guid> categoryId = book.CategoryList == null
+      ? new List<Guid>() : book.CategoryList.Select(x => x.Id).ToList();
+
       var result = new BookDTO
       {
         Id = book.Id,
         Name = book.Name,
         Author = book.Author,
-        CategoryName = category
+        CategoryID = categoryId
       };
       return result;
     }

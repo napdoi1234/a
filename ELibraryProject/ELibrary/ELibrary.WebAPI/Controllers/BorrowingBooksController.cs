@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using System.Threading.Tasks;
 using ELibrary.Service.CommonService;
 using ELibrary.Service.NormalService;
@@ -20,15 +21,19 @@ namespace ELibrary.WebAPI.Controllers
       _borrowBookService = borrowBookService;
       _bookService = bookService;
     }
+    protected string GetUserId()
+    {
+      var claimsIdentity = User.Identity as ClaimsIdentity;
+      return claimsIdentity.FindFirst(ClaimTypes.UserData).Value;
+    }
 
     [HttpGet("borrowed")]
     public async Task<ActionResult<PagingResult<BookBorrowingRequestDTO>>> ViewBorrowedBooks
-    ([FromQuery(Name = "userId")] string userId, [FromQuery(Name = "pageSize")] int pageSize,
-    [FromQuery(Name = "pageIndex")] int pageIndex = 1)
+    ([FromQuery(Name = "pageSize")] int pageSize, [FromQuery(Name = "pageIndex")] int pageIndex = 1)
     {
       var requestDTO = new BookBorrowingRequestDTO
       {
-        UserId = userId,
+        UserId = GetUserId(),
         PageIndex = pageIndex,
         PageSize = pageSize,
       };
@@ -50,6 +55,7 @@ namespace ELibrary.WebAPI.Controllers
     [HttpPost("borrowed")]
     public async Task<ActionResult<BookBorrowingRequestDTO>> BorrowedBooks(BookBorrowingRequestDTO requestDTO)
     {
+      requestDTO.UserId = GetUserId();
       var result = await _borrowBookService.BorrowBooks(requestDTO);
       if (result.Message != null)
       {

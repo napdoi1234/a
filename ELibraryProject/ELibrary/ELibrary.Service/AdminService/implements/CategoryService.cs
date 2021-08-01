@@ -41,11 +41,12 @@ namespace ELibrary.Service.AdminService.implements
 
     public async Task<bool> Delete(Guid id)
     {
-      var category = await _context.Categories.FindAsync(id);
+      var category = await _context.Categories.Include(x => x.BookList).FirstOrDefaultAsync(x => x.Id == id);
       if (category == null)
       {
         return false;
       };
+      category.BookList = null;
       _context.Categories.Remove(category);
       await _context.SaveChangesAsync();
       return true;

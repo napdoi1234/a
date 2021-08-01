@@ -42,7 +42,7 @@ namespace ELibrary.WebAPI.Controllers
       {
         return Ok(result);
       }
-      return BadRequest("Not found book");
+      return BadRequest(result);
     }
 
     [HttpPost]
@@ -59,10 +59,10 @@ namespace ELibrary.WebAPI.Controllers
       {
         return Ok(result);
       }
-      return BadRequest("Errors update");
+      return BadRequest(result);
     }
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(Guid id)
     {
       var result = await _bookService.Delete(id);
@@ -70,7 +70,7 @@ namespace ELibrary.WebAPI.Controllers
       {
         return Ok();
       }
-      return BadRequest("Not found book");
+      return BadRequest();
     }
   }
 }

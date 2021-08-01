@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using ELibrary.Service.AdminService;
 using ELibrary.Utilities.Constants.User;
@@ -18,6 +22,12 @@ namespace ELibrary.WebAPI.Controllers
       _confirmService = confirmService;
     }
 
+    protected string GetUserId()
+    {
+      var claimsIdentity = User.Identity as ClaimsIdentity;
+      return claimsIdentity.FindFirst(ClaimTypes.UserData).Value;
+    }
+
     [HttpGet]
     public async Task<ActionResult<PagingResult<BookBorrowingRequestDTO>>> View(
       [FromQuery(Name = "pageSize")] int pageSize, [FromQuery(Name = "pageIndex")] int pageIndex = 1)
@@ -33,6 +43,7 @@ namespace ELibrary.WebAPI.Controllers
     [HttpPost]
     public async Task<ActionResult> ConfirmBorrowedBook(BookConfirmRequestDTO requestDTO)
     {
+      requestDTO.UserId = GetUserId();
       var result = await _confirmService.ConfirmBorrowedBooks(requestDTO);
       if (result)
       {
